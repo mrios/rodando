@@ -1,12 +1,14 @@
-import React, { FC } from 'react';
+import React, { FC, useContext } from 'react';
+import { AppContext } from '../context/Context';
 import { Layout, Menu } from 'antd';
 import { UserOutlined, VideoCameraOutlined } from '@ant-design/icons';
 
 const { Sider } = Layout;
 
 const SiderApp: FC = () => {
+  const appContext = useContext(AppContext);
   return (
-    <Sider trigger={null} collapsible collapsed={true}>
+    <Sider trigger={null} collapsible collapsed={appContext.state.isCollapsed}>
       <div className="brand">
         <div className="logo" />
         <div className="name">Rodando</div>
