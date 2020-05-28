@@ -1,7 +1,7 @@
-@import "~antd/dist/antd.less";
+@import '~antd/dist/antd.less';
 
 .App {
-  text-align: center;
+  text-align: left;
 }
 
 .App-logo {
@@ -36,5 +36,61 @@
   }
   to {
     transform: rotate(360deg);
+  }
+}
+
+.brand {
+  margin: 16px;
+  display: flex;
+  height: 32px;
+  align-items: center;
+  .logo {
+    flex: 1;
+    height: inherit;
+    background-image: url('/logo512.png');
+    background-size: 32px;
+    background-repeat: no-repeat;
+    background-position: center;
+  }
+  .name {
+    flex: 2;
+    font-size: 18px;
+    color: @primary-color;
+    text-transform: uppercase;
+    font-family: 'Poiret One', cursive;
+    font-weight: 700;
+  }
+}
+
+.ant-layout-sider-collapsed {
+  .brand {
+    .logo {
+      height: 32px;
+      background-image: url('/logo512.png');
+      background-size: 32px;
+      background-repeat: no-repeat;
+      background-position: center;
+    }
+    .name {
+      display: none;
+    }
+  }
+}
+
+.site-layout {
+  .site-layout-background {
+    padding: 0;
+    background: #fff;
+    .trigger {
+      font-size: 18px;
+      line-height: 64px;
+      padding: 0 24px;
+      cursor: pointer;
+      transition: color 0.3s;
+    }
+
+    .trigger:hover {
+      color: #1890ff;
+    }
   }
 }

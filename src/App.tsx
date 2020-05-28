@@ -1,11 +1,13 @@
-import React, { FC } from "react";
-import { Button } from "antd";
-import "./App.less";
+import React, { FC } from 'react';
+import { Layout } from 'antd';
+import { SiderApp, ContentApp } from './layout';
+import './App.less';
 
 const App: FC = () => (
-  <div className="App">
-    <Button type="primary">Go Rodando!</Button>
-  </div>
+  <Layout className="App">
+    <SiderApp />
+    <ContentApp />
+  </Layout>
 );
 
 export default App;
