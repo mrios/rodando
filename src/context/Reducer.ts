@@ -1,6 +1,6 @@
 import { TOGGLE_MENU, ActionType } from './AppTypes';
 
-const toggleMenu = (payload: Object, state: { isCollapsed: any }) => {
+const toggleMenu = (payload: Object, state: { isCollapsed: boolean }) => {
   return { ...state, isCollapsed: payload };
 };
 
