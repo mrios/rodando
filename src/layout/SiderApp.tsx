@@ -6,9 +6,9 @@ import { UserOutlined, VideoCameraOutlined } from '@ant-design/icons';
 const { Sider } = Layout;
 
 const SiderApp: FC = () => {
-  const appContext = useContext(AppContext);
+  const { state } = useContext(AppContext);
   return (
-    <Sider trigger={null} collapsible collapsed={appContext.state.isCollapsed}>
+    <Sider trigger={null} collapsible collapsed={state.isCollapsed}>
       <div className="brand">
         <div className="logo" />
         <div className="name">Rodando</div>
