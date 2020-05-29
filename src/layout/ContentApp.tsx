@@ -1,12 +1,14 @@
 import React, { FC, useContext } from 'react';
 import { AppContext } from '../context/Context';
 import { TOGGLE_MENU } from '../context/AppTypes';
+import { Switch, Route } from 'react-router-dom';
+import routes from '../routes';
 import { Layout } from 'antd';
 import { MenuUnfoldOutlined, MenuFoldOutlined } from '@ant-design/icons';
 
 const { Header, Content } = Layout;
 
-const ContentApp: FC = () => {
+const ContentApp: FC = (props) => {
   const { state, dispatch } = useContext(AppContext);
   return (
     <Layout className="site-layout">
@@ -16,7 +18,10 @@ const ContentApp: FC = () => {
           {
             className: 'trigger',
             onClick: () =>
-              dispatch({ type: TOGGLE_MENU, payload: !state.isCollapsed }),
+              dispatch({
+                type: TOGGLE_MENU,
+                payload: !state.isCollapsed,
+              }),
           }
         )}
       </Header>
@@ -28,7 +33,16 @@ const ContentApp: FC = () => {
           minHeight: 280,
         }}
       >
-        Content
+        <Switch>
+          {routes.map((route, index) => (
+            <Route
+              key={index}
+              path={route.path}
+              exact={route.exact}
+              children={<route.component />}
+            />
+          ))}
+        </Switch>
       </Content>
     </Layout>
   );
