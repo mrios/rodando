@@ -1,7 +1,13 @@
 import React, { createContext, useReducer } from 'react';
-import { InitialStateType, initialState } from './AppTypes';
+import { InitialStateType } from './AppTypes';
+import projectFakeData from './../fake-data/projects';
 
 import { appReducer } from './Reducer';
+
+const initialState = {
+  isCollapsed: false,
+  projects: projectFakeData,
+};
 
 const AppContext = createContext<{
   state: InitialStateType;

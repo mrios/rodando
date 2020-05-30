@@ -4,10 +4,30 @@ export interface ActionType {
   payload: Object;
 }
 
-export type InitialStateType = {
-  isCollapsed: boolean;
+export type PictureType = {
+  uid: string;
+  status: string;
+  name: string;
+  url: string;
 };
 
-export const initialState = {
-  isCollapsed: false,
+export type LocationType = {
+  name: string;
+  address: Object;
+  pictures: Array<PictureType>;
+};
+
+export type ProjectType = {
+  uid: string;
+  name: string;
+  description: string;
+  screenplay: Object;
+  schootingScript: Object;
+  locations: Array<LocationType>;
+  pictures: Array<PictureType>;
+};
+
+export type InitialStateType = {
+  isCollapsed: boolean;
+  projects: Array<ProjectType>;
 };
