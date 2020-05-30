@@ -1,12 +1,16 @@
 import React, { FC } from 'react';
-import EmptyBlock from '../common/EmptyBlock';
+import { Empty } from 'antd';
 
 const ContactList: FC = (props) => {
-  const addContact = () => {
-    console.log('Create contact!');
-  };
-
-  return <EmptyBlock entity="Contacto" clickHandler={addContact} />;
+  return (
+    <Empty
+      image="https://gw.alipayobjects.com/zos/antfincdn/ZHrcdLPrvN/empty.svg"
+      imageStyle={{
+        height: 60,
+      }}
+      description="No hay contactos agregados"
+    />
+  );
 };
 
 export default ContactList;
