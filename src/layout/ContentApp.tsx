@@ -12,11 +12,11 @@ const ContentApp: FC = (props) => {
   const { state, dispatch } = useContext(AppContext);
   return (
     <Layout className="site-layout">
-      <Header className="site-layout-background">
+      <Header className="site-layout-background site-header">
         {React.createElement(
           state.isCollapsed ? MenuUnfoldOutlined : MenuFoldOutlined,
           {
-            className: 'trigger',
+            className: 'trigger-menu',
             onClick: () =>
               dispatch({
                 type: TOGGLE_MENU,
@@ -28,9 +28,8 @@ const ContentApp: FC = (props) => {
       <Content
         className="site-layout-background"
         style={{
-          margin: '24px 16px',
           padding: 24,
-          minHeight: 280,
+          minHeight: '100vh',
         }}
       >
         <Switch>
@@ -40,6 +39,7 @@ const ContentApp: FC = (props) => {
               path={route.path}
               exact={route.exact}
               children={<route.component />}
+              routes={route.routes}
             />
           ))}
         </Switch>
