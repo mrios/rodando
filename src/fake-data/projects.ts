@@ -19,8 +19,8 @@ export default [
   },
   {
     uid: '2',
-    name: 'La Guardia',
-    description: 'La Guardia es un proyecto realizado para Guion 3, FADU. UBA',
+    name: 'La Guardia II',
+    description: 'Secuela de La Guardia, filmada en la ciudad de ...',
     dateTime: {},
     screenplay: '',
     schootingScript: '',

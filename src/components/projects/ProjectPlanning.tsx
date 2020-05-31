@@ -1,57 +1,56 @@
 import React, { FC } from 'react';
-import { Table, Tag, Space, Button, Row, Col } from 'antd';
-import { DashOutlined, PlusOutlined } from '@ant-design/icons';
+import { Table, Space, Button, Row, Col } from 'antd';
+import { MenuOutlined, PlusOutlined } from '@ant-design/icons';
 
 const columns = [
   {
-    title: 'Mover',
+    title: '',
     dataIndex: 'move',
     key: 'move',
-    render: (text: React.ReactNode) => <DashOutlined />,
+    render: (text: React.ReactNode) => <MenuOutlined />,
   },
   {
-    title: 'Name',
-    dataIndex: 'name',
-    key: 'name',
+    title: 'Escena',
+    dataIndex: 'scene',
+    key: 'scene',
     render: (text: React.ReactNode) => <a>{text}</a>,
   },
   {
-    title: 'Age',
-    dataIndex: 'age',
-    key: 'age',
+    title: 'Plano',
+    dataIndex: 'shot',
+    key: 'shot',
   },
   {
-    title: 'Address',
-    dataIndex: 'address',
-    key: 'address',
+    title: 'INT / EXT',
+    dataIndex: 'interiorOrExterior',
+    key: 'interiorOrExterior',
   },
   {
-    title: 'Tags',
-    key: 'tags',
-    dataIndex: 'tags',
-    render: (tags: any[]) => (
-      <>
-        {tags.map((tag) => {
-          let color = tag.length > 5 ? 'geekblue' : 'green';
-          if (tag === 'loser') {
-            color = 'volcano';
-          }
-          return (
-            <Tag color={color} key={tag}>
-              {tag.toUpperCase()}
-            </Tag>
-          );
-        })}
-      </>
-    ),
+    title: 'Locacion',
+    dataIndex: 'location',
+    key: 'location',
   },
   {
-    title: 'Action',
+    title: 'Decorado',
+    dataIndex: 'decoration',
+    key: 'decoration',
+  },
+  {
+    title: 'Dia / Noche',
+    dataIndex: 'dayOrNight',
+    key: 'dayOrNight',
+  },
+  {
+    title: 'Cast',
+    dataIndex: 'cast',
+    key: 'cast',
+  },
+  {
+    title: 'Editar',
     key: 'action',
-    render: (text: any, record: { name: React.ReactNode }) => (
+    render: (text: any, record: { scene: React.ReactNode }) => (
       <Space size="middle">
-        <a>Invite {record.name}</a>
-        <a>Delete</a>
+        <a>Editar</a>
       </Space>
     ),
   },
@@ -60,28 +59,38 @@ const columns = [
 const data = [
   {
     key: '1',
-    name: 'John Brown',
-    age: 32,
-    address: 'New York No. 1 Lake Park',
-    tags: ['nice', 'developer'],
+    scene: 1,
+    shot: 1,
+    location: 'Guardia Vieja 2900',
+    decoration: 'Decorado 1',
+    interiorOrExterior: 'INT',
+    dayOrNight: 'Dia',
+    cast: 'Charly, Julieta, Abe',
   },
   {
     key: '2',
-    name: 'Jim Green',
-    age: 42,
-    address: 'London No. 1 Lake Park',
-    tags: ['loser'],
+    scene: 1,
+    shot: 2,
+    location: 'Guardia Vieja 2900',
+    decoration: 'Decorado 2',
+    interiorOrExterior: 'EXT',
+    dayOrNight: 'Noche',
+    cast: 'Mumu',
   },
   {
     key: '3',
-    name: 'Joe Black',
-    age: 32,
-    address: 'Sidney No. 1 Lake Park',
-    tags: ['cool', 'teacher'],
+    scene: 2,
+    shot: 1,
+    location: 'Av. Lavalle 543',
+    decoration: 'Decorado 1',
+    interiorOrExterior: 'INT',
+    dayOrNight: 'Dia',
+    cast: 'Sarita',
   },
 ];
 
 const ProjectPlanning: FC = (props) => {
+  const colors = ['blue', 'green'];
   return (
     <React.Fragment>
       <Row gutter={[16, 24]}>
@@ -97,7 +106,14 @@ const ProjectPlanning: FC = (props) => {
       </Row>
       <Row>
         <Col span={24}>
-          <Table columns={columns} dataSource={data} size="middle" />;
+          <Table
+            columns={columns}
+            dataSource={data}
+            size="middle"
+            rowClassName={(record, index) =>
+              `row-color-${colors[record.scene - 1]}`
+            }
+          />
         </Col>
       </Row>
     </React.Fragment>
