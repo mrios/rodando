@@ -5,7 +5,7 @@ import projectFakeData from './../fake-data/projects';
 import { appReducer } from './Reducer';
 
 const initialState = {
-  isCollapsed: false,
+  isCollapsed: true,
   projects: projectFakeData,
 };
 
