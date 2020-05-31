@@ -1,4 +1,4 @@
-import React, { FC, useContext, useEffect } from 'react';
+import React, { FC, useEffect } from 'react';
 import { Menu, Layout, Row, Col, PageHeader, Button } from 'antd';
 import {
   Link,
@@ -6,23 +6,19 @@ import {
   Route,
   useRouteMatch,
   useHistory,
-  useParams,
 } from 'react-router-dom';
 import ProjectFormBasic from './ProjectFormBasic';
 import ProjectPlanning from './ProjectPlanning';
 import ProjectContacts from './ProjectContacts';
-import { AppContext } from './../../context/Context';
 import { FileTextOutlined } from '@ant-design/icons';
-import Project from './../../models/Project';
+import useProject from '../../hooks/useProject';
 
 const { Content } = Layout;
 
 const ProjectDetails: FC = (props) => {
+  const [project] = useProject();
   let { url, path } = useRouteMatch();
   let history = useHistory();
-  let { id } = useParams();
-  const { state } = useContext(AppContext);
-  const project = state.projects.find((p) => p.uid === id) || new Project();
 
   const goBack = () => {
     history.push('/projects');
@@ -30,6 +26,7 @@ const ProjectDetails: FC = (props) => {
 
   useEffect(() => {
     history.push(`${url}/basic`);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
@@ -79,7 +76,7 @@ const ProjectDetails: FC = (props) => {
           >
             <Switch>
               <Route path={`${path}/basic`}>
-                <ProjectFormBasic project={project} />
+                <ProjectFormBasic />
               </Route>
               <Route path={`${path}/planning`}>
                 <ProjectPlanning />

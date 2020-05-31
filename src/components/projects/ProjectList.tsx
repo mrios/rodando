@@ -1,33 +1,26 @@
-import React, { FC, useContext, useState } from 'react';
+import React, { FC, useContext } from 'react';
 import { useHistory } from 'react-router-dom';
 import { AppContext } from './../../context/Context';
-import ProjectFormBasic from './ProjectFormBasic';
 import { Card, PageHeader, Empty } from 'antd';
-import { Drawer, Button, Row, Col, Space } from 'antd';
+import { Button, Row, Col, Space } from 'antd';
 import {
   EditOutlined,
   EllipsisOutlined,
   SettingOutlined,
   PlusOutlined,
 } from '@ant-design/icons';
-import Project from '../../models/Project';
 const { Meta } = Card;
 
 const ProjectList: FC = (props) => {
   const { state } = useContext(AppContext);
-  const [isVisible, setIsVisible] = useState(false);
   let history = useHistory();
-
-  const showForm = () => {
-    setIsVisible(true);
-  };
-
-  const onClose = () => {
-    setIsVisible(false);
-  };
 
   const editProject = (projectId: string) => {
     history.push(`/projects/${projectId}`);
+  };
+
+  const newProject = () => {
+    history.push(`/projects/new`);
   };
 
   return (
@@ -36,7 +29,7 @@ const ProjectList: FC = (props) => {
         <Col span={24}>
           <PageHeader
             className="site-page-header"
-            onBack={() => showForm()}
+            onBack={() => newProject()}
             backIcon={<PlusOutlined />}
             title="Proyectos"
             subTitle=""
@@ -44,7 +37,7 @@ const ProjectList: FC = (props) => {
               <Button
                 type="primary"
                 icon={<PlusOutlined />}
-                onClick={() => showForm()}
+                onClick={() => newProject()}
               >
                 Crear un nuevo Proyecto
               </Button>,
@@ -53,35 +46,12 @@ const ProjectList: FC = (props) => {
         </Col>
       </Row>
       <Row>
-        <Drawer
-          title="Crear un nuevo proyecto"
-          width={720}
-          onClose={onClose}
-          visible={isVisible}
-          bodyStyle={{ paddingBottom: 80 }}
-          footer={
-            <div
-              style={{
-                textAlign: 'right',
-              }}
-            >
-              <Button onClick={onClose} style={{ marginRight: 8 }}>
-                Cancelar
-              </Button>
-              <Button onClick={onClose} type="primary">
-                Guardar
-              </Button>
-            </div>
-          }
-        >
-          <ProjectFormBasic project={new Project()} />
-        </Drawer>
         <Space size="middle">
           {state.projects.length ? (
             state.projects.map((project: any) => (
               <Card
                 hoverable
-                style={{ width: 250 }}
+                style={{ width: 250, minHeight: 340 }}
                 cover={
                   <img
                     className="trigger-img"

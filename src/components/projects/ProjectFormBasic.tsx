@@ -1,11 +1,10 @@
 import React, { FC, useState } from 'react';
 import { Form, Col, Row, Input, DatePicker, Upload, Button } from 'antd';
 import { UploadOutlined } from '@ant-design/icons';
-import { ProjectType } from '../../context/AppTypes';
+import useProject from '../../hooks/useProject';
 
-const ProjectFormBasic: FC<{ project: ProjectType }> = (props) => {
-  console.log(props.project.name);
-  console.log(props.project.description);
+const ProjectFormBasic: FC = (props) => {
+  const [project] = useProject();
   const [fileList, setFileList] = useState([
     {
       uid: '-1',
@@ -28,7 +27,7 @@ const ProjectFormBasic: FC<{ project: ProjectType }> = (props) => {
           >
             <Input
               placeholder="Por favor, ingrese un nombre"
-              defaultValue={props.project.name}
+              defaultValue={project.name}
             />
           </Form.Item>
         </Col>
@@ -63,13 +62,13 @@ const ProjectFormBasic: FC<{ project: ProjectType }> = (props) => {
             <Input.TextArea
               rows={4}
               placeholder="Ingrese una breve descripcion acerca del proyecto"
-              defaultValue={props.project.description}
+              defaultValue={project.description}
             />
           </Form.Item>
         </Col>
       </Row>
       <Row gutter={16}>
-        <Col span={12}>
+        <Col span={6}>
           <Form.Item
             name="screenplay"
             label="Guion narrativo"
@@ -81,13 +80,13 @@ const ProjectFormBasic: FC<{ project: ProjectType }> = (props) => {
             ]}
           >
             <Upload {...props}>
-              <Button>
-                <UploadOutlined /> Click para subir el archivo
+              <Button type="primary" ghost>
+                <UploadOutlined /> Subir archivo
               </Button>
             </Upload>
           </Form.Item>
         </Col>
-        <Col span={12}>
+        <Col span={6}>
           <Form.Item
             name="shootingScript"
             label="Guion tecnico"
@@ -99,15 +98,13 @@ const ProjectFormBasic: FC<{ project: ProjectType }> = (props) => {
             ]}
           >
             <Upload {...props}>
-              <Button>
-                <UploadOutlined /> Click para subir el archivo
+              <Button type="primary" ghost>
+                <UploadOutlined /> Subir archivo
               </Button>
             </Upload>
           </Form.Item>
         </Col>
-      </Row>
-      <Row gutter={16}>
-        <Col span={24}>
+        <Col span={12}>
           <Form.Item
             name="images"
             label="Imagenes"
