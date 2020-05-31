@@ -1,30 +1,15 @@
-import React, { FC, useContext } from 'react';
-import { AppContext } from '../context/Context';
-import { TOGGLE_MENU } from '../context/AppTypes';
+import React, { FC } from 'react';
 import { Switch, Route } from 'react-router-dom';
 import routes from '../routes';
 import { Layout } from 'antd';
-import { MenuUnfoldOutlined, MenuFoldOutlined } from '@ant-design/icons';
+import HeaderApp from './HeaderApp';
 
-const { Header, Content } = Layout;
+const { Content } = Layout;
 
 const ContentApp: FC = (props) => {
-  const { state, dispatch } = useContext(AppContext);
   return (
     <Layout className="site-layout">
-      <Header className="site-layout-background site-header">
-        {React.createElement(
-          state.isCollapsed ? MenuUnfoldOutlined : MenuFoldOutlined,
-          {
-            className: 'trigger-menu',
-            onClick: () =>
-              dispatch({
-                type: TOGGLE_MENU,
-                payload: !state.isCollapsed,
-              }),
-          }
-        )}
-      </Header>
+      <HeaderApp />
       <Content
         className="site-layout-background"
         style={{
