@@ -1,7 +1,19 @@
 @import '~antd/dist/antd.less';
+@import './styles/mixins/font-mixin.less';
+
+.monserrat-semibold {
+  .font('Monserrat', sans-serif; 500; normal);
+}
+.lato-light {
+  .font('Lato', sans-serif; 400; normal);
+}
+.poiret-bold {
+  .font('Poiret One', cursive; 700; normal);
+}
 
 .App {
   text-align: left;
+  .lato-light();
 }
 
 .App-logo {
@@ -40,7 +52,7 @@
 }
 
 .brand {
-  margin: 16px;
+  margin: @margin-md;
   display: flex;
   height: 32px;
   align-items: center;
@@ -57,8 +69,7 @@
     font-size: 18px;
     color: @primary-color;
     text-transform: uppercase;
-    font-family: 'Poiret One', cursive;
-    font-weight: 700;
+    .poiret-bold;
   }
 }
 
@@ -81,7 +92,11 @@
   .site-page-header {
     background-color: @white;
     border-bottom: 1px solid #eaeaea;
-    margin-bottom: 15px;
+    margin-bottom: @margin-md;
+    .ant-page-header-heading-title {
+      .monserrat-semibold();
+      margin-right: @margin-md;
+    }
   }
   .site-header {
     border-bottom: 1px solid #eaeaea;
@@ -95,7 +110,7 @@
     .trigger-menu {
       font-size: 18px;
       line-height: 64px;
-      padding: 0 24px;
+      padding: 0 @padding-lg;
       cursor: pointer;
       transition: color 0.3s;
       &:hover {
@@ -108,4 +123,18 @@
       }
     }
   }
+}
+
+.ant-menu-item a {
+  .monserrat-semibold();
+  text-transform: uppercase;
+  font-size: 13px;
+}
+
+.row-color-green {
+  background-color: lightgreen;
+}
+
+.row-color-blue {
+  background-color: lightblue;
 }
