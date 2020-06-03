@@ -5,7 +5,7 @@ export default [
     description: 'La Guardia es un proyecto realizado para Guion 3, FADU. UBA',
     dateTime: {},
     screenplay: '',
-    schootingScript: '',
+    shootingScript: '',
     locations: [],
     pictures: [
       {
@@ -23,7 +23,7 @@ export default [
     description: 'Secuela de La Guardia, filmada en la ciudad de ...',
     dateTime: {},
     screenplay: '',
-    schootingScript: '',
+    shootingScript: '',
     locations: [],
     pictures: [
       {
@@ -41,7 +41,7 @@ export default [
     description: 'La Guardia es un proyecto realizado para Guion 3, FADU. UBA',
     dateTime: {},
     screenplay: '',
-    schootingScript: '',
+    shootingScript: '',
     locations: [],
     pictures: [
       {

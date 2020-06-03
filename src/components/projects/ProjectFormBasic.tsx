@@ -15,8 +15,9 @@ const ProjectFormBasic: FC = (props) => {
         'https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png',
     },
   ]);
+  form.setFieldsValue(project);
   return (
-    <Form layout="vertical" hideRequiredMark>
+    <Form layout="vertical" form={form} hideRequiredMark>
       <Row gutter={16}>
         <Col span={12}>
           <Form.Item
@@ -26,10 +27,7 @@ const ProjectFormBasic: FC = (props) => {
               { required: true, message: 'Por favor, ingrese un nombre' },
             ]}
           >
-            <Input
-              placeholder="Por favor, ingrese un nombre"
-              defaultValue={project.name}
-            />
+            <Input placeholder="Por favor, ingrese un nombre" />
           </Form.Item>
         </Col>
         <Col span={12}>
@@ -63,7 +61,6 @@ const ProjectFormBasic: FC = (props) => {
             <Input.TextArea
               rows={4}
               placeholder="Ingrese una breve descripcion acerca del proyecto"
-              defaultValue={project.description}
             />
           </Form.Item>
         </Col>
@@ -80,7 +77,7 @@ const ProjectFormBasic: FC = (props) => {
               },
             ]}
           >
-            <Upload {...props}>
+            <Upload>
               <Button type="primary" ghost>
                 <UploadOutlined /> Subir archivo
               </Button>
@@ -98,7 +95,7 @@ const ProjectFormBasic: FC = (props) => {
               },
             ]}
           >
-            <Upload {...props}>
+            <Upload>
               <Button type="primary" ghost>
                 <UploadOutlined /> Subir archivo
               </Button>
