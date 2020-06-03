@@ -6,8 +6,7 @@ import Project from '../models/Project';
 const useProject = () => {
   let { id } = useParams();
   const { state } = useContext(AppContext);
-  const project = state.projects.find((p) => p.uid === id) || new Project();
-
+  const project = state.projects.find((p) => p.uid === id) || new Project({});
   return [project];
 };
 

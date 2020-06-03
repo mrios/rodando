@@ -18,13 +18,13 @@ export type LocationType = {
 };
 
 export type ProjectType = {
-  uid: string;
-  name: string;
-  description: string;
-  screenplay: Object;
-  schootingScript: Object;
-  locations: Array<LocationType>;
-  pictures: Array<PictureType>;
+  uid?: string;
+  name?: string;
+  description?: string;
+  screenplay?: string;
+  shootingScript?: string;
+  locations?: Array<LocationType>;
+  pictures?: Array<PictureType>;
 };
 
 export type InitialStateType = {
