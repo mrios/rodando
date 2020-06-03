@@ -1,4 +1,8 @@
-import { ProjectType, LocationType, PictureType } from '../context/AppTypes';
+import {
+  ProjectType,
+  LocationType,
+  PictureType,
+} from '../context/projects/ProjectTypes';
 import { v4 as uuidv4 } from 'uuid';
 
 export default class Project implements ProjectType {

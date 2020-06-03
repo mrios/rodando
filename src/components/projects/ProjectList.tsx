@@ -1,6 +1,6 @@
 import React, { FC, useContext } from 'react';
 import { useHistory } from 'react-router-dom';
-import { AppContext } from './../../context/Context';
+import { ProjectContext } from '../../context/projects/ProjectContext';
 import { Card, PageHeader, Empty } from 'antd';
 import { Button, Row, Col, Space } from 'antd';
 import {
@@ -12,7 +12,7 @@ import {
 const { Meta } = Card;
 
 const ProjectList: FC = (props) => {
-  const { state } = useContext(AppContext);
+  const { state } = useContext(ProjectContext);
   let history = useHistory();
 
   const editProject = (projectId: string) => {

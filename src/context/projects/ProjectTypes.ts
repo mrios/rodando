@@ -1,4 +1,9 @@
-export const TOGGLE_MENU = 'TOGGLE_MENU';
+export enum ProjectActionType {
+  'SELECT_PROJECT' = 'SELECT_PROJECT',
+  'ADD_PROJECT' = 'ADD_PROJECT',
+  'REMOVE_PROJECT' = 'REMOVE_PROJECT',
+}
+
 export interface ActionType {
   type: string;
   payload: Object;
@@ -27,7 +32,7 @@ export type ProjectType = {
   pictures?: Array<PictureType>;
 };
 
-export type InitialStateType = {
-  isCollapsed: boolean;
+export type InitialStateProjectType = {
   projects: Array<ProjectType>;
+  currentProject: null | ProjectType;
 };

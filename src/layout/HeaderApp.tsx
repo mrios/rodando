@@ -3,8 +3,8 @@ import { Layout } from 'antd';
 import { MenuUnfoldOutlined, MenuFoldOutlined } from '@ant-design/icons';
 
 import useProject from '../hooks/useProject';
-import { TOGGLE_MENU } from '../context/AppTypes';
-import { AppContext } from '../context/Context';
+import { TOGGLE_MENU } from '../context/app/AppTypes';
+import { AppContext } from '../context/app/AppContext';
 import BreadcrumbApp from './BreadcrumbApp';
 
 const { Header } = Layout;

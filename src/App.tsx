@@ -2,7 +2,7 @@ import React, { FC } from 'react';
 import { BrowserRouter as Router } from 'react-router-dom';
 import { Layout } from 'antd';
 import { SiderApp, ContentApp } from './layout';
-import { AppProvider } from './context/Context';
+import { AppProvider } from './context/app/AppContext';
 import './App.less';
 
 const App: FC = () => (

@@ -1,5 +1,5 @@
 import React, { FC, useContext } from 'react';
-import { AppContext } from '../context/Context';
+import { AppContext } from '../context/app/AppContext';
 import { Layout, Menu } from 'antd';
 import { UserOutlined, VideoCameraOutlined } from '@ant-design/icons';
 import { Link } from 'react-router-dom';

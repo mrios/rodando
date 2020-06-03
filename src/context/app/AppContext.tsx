@@ -1,16 +1,13 @@
 import React, { createContext, useReducer } from 'react';
-import { InitialStateType } from './AppTypes';
-import projectFakeData from './../fake-data/projects';
-
-import { appReducer } from './Reducer';
+import { InitialStateAppType } from './AppTypes';
+import { appReducer } from './AppReducer';
 
 const initialState = {
   isCollapsed: true,
-  projects: projectFakeData,
 };
 
 const AppContext = createContext<{
-  state: InitialStateType;
+  state: InitialStateAppType;
   dispatch: React.Dispatch<any>;
 }>({
   state: initialState,
