@@ -35,6 +35,7 @@ const ProjectList: FC = (props) => {
             subTitle=""
             extra={[
               <Button
+                key="1"
                 type="primary"
                 icon={<PlusOutlined />}
                 onClick={() => newProject()}
@@ -48,8 +49,9 @@ const ProjectList: FC = (props) => {
       <Row>
         <Space size="middle">
           {state.projects.length ? (
-            state.projects.map((project: any) => (
+            state.projects.map((project: any, key: number) => (
               <Card
+                key={`project-${key}`}
                 hoverable
                 style={{ width: 250, minHeight: 340 }}
                 cover={
