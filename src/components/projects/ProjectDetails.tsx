@@ -7,11 +7,14 @@ import {
   useRouteMatch,
   useHistory,
 } from 'react-router-dom';
+import { FileTextOutlined } from '@ant-design/icons';
+
+import { ProjectProvider } from '../../context/projects/ProjectContext';
+import useProject from '../../hooks/useProject';
+
 import ProjectFormBasic from './ProjectFormBasic';
 import ProjectPlanning from './ProjectPlanning';
 import ProjectContacts from './ProjectContacts';
-import { FileTextOutlined } from '@ant-design/icons';
-import useProject from '../../hooks/useProject';
 
 const { Content } = Layout;
 
@@ -74,17 +77,19 @@ const ProjectDetails: FC = (props) => {
               padding: 24,
             }}
           >
-            <Switch>
-              <Route path={`${path}/basic`}>
-                <ProjectFormBasic />
-              </Route>
-              <Route path={`${path}/planning`}>
-                <ProjectPlanning />
-              </Route>
-              <Route path={`${path}/contacts`}>
-                <ProjectContacts />
-              </Route>
-            </Switch>
+            <ProjectProvider>
+              <Switch>
+                <Route path={`${path}/basic`}>
+                  <ProjectFormBasic />
+                </Route>
+                <Route path={`${path}/planning`}>
+                  <ProjectPlanning />
+                </Route>
+                <Route path={`${path}/contacts`}>
+                  <ProjectContacts />
+                </Route>
+              </Switch>
+            </ProjectProvider>
           </Content>
         </Col>
       </Row>
