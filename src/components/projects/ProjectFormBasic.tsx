@@ -5,6 +5,7 @@ import useProject from '../../hooks/useProject';
 
 const ProjectFormBasic: FC = (props) => {
   const [project] = useProject();
+  const [form] = Form.useForm();
   const [fileList, setFileList] = useState([
     {
       uid: '-1',
