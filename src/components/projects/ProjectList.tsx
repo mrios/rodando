@@ -59,7 +59,7 @@ const ProjectList: FC = (props) => {
                     className="trigger-img"
                     alt={project.name}
                     src={
-                      project.pictures[0].url ||
+                      (project.profileImage && project.profileImage.url) ||
                       'https://gw.alipayobjects.com/zos/rmsportal/JiqGstEfoWAOHiTxclqi.png'
                     }
                     onClick={() => editProject(project.uid)}

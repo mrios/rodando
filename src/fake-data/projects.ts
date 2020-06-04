@@ -7,15 +7,14 @@ export default [
     screenplay: '',
     shootingScript: '',
     locations: [],
-    pictures: [
-      {
-        uid: 'img1',
-        status: 'done',
-        name: 'image1',
-        url:
-          'https://conceptodefinicion.de/wp-content/uploads/2018/01/Filmaci%C3%B3n2.jpg',
-      },
-    ],
+    profileImage: {
+      uid: 'img1',
+      status: 'done',
+      name: 'image1',
+      url:
+        'https://conceptodefinicion.de/wp-content/uploads/2018/01/Filmaci%C3%B3n2.jpg',
+    },
+    images: [],
   },
   {
     uid: '2',
@@ -25,15 +24,14 @@ export default [
     screenplay: '',
     shootingScript: '',
     locations: [],
-    pictures: [
-      {
-        uid: 'img2',
-        status: 'done',
-        name: 'image1',
-        url:
-          'https://conceptodefinicion.de/wp-content/uploads/2018/01/Filmaci%C3%B3n2.jpg',
-      },
-    ],
+    profileImage: {
+      uid: 'img2',
+      status: 'done',
+      name: 'image2',
+      url:
+        'https://conceptodefinicion.de/wp-content/uploads/2018/01/Filmaci%C3%B3n2.jpg',
+    },
+    images: [],
   },
   {
     uid: '3',
@@ -43,14 +41,13 @@ export default [
     screenplay: '',
     shootingScript: '',
     locations: [],
-    pictures: [
-      {
-        uid: 'img3',
-        status: 'done',
-        name: 'image1',
-        url:
-          'https://conceptodefinicion.de/wp-content/uploads/2018/01/Filmaci%C3%B3n2.jpg',
-      },
-    ],
+    profileImage: {
+      uid: 'img3',
+      status: 'done',
+      name: 'image3',
+      url:
+        'https://conceptodefinicion.de/wp-content/uploads/2018/01/Filmaci%C3%B3n2.jpg',
+    },
+    images: [],
   },
 ];

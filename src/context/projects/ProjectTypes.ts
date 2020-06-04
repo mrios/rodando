@@ -1,15 +1,16 @@
-export enum ProjectActionType {
-  'SELECT_PROJECT' = 'SELECT_PROJECT',
-  'ADD_PROJECT' = 'ADD_PROJECT',
-  'REMOVE_PROJECT' = 'REMOVE_PROJECT',
+export enum ProjectAction {
+  FETCH_PROJECTS = 'FETCH_PROJECTS',
+  ADD_PROJECT = 'ADD_PROJECT',
+  UPDATE_PROJECT = 'UPDATE_PROJECT',
+  DELETE_PROJECT = 'DELETE_PROJECT',
 }
 
-export interface ActionType {
+export interface ActionProjectType {
   type: string;
-  payload: Object;
+  payload: Object | ProjectType;
 }
 
-export type PictureType = {
+export type ImageType = {
   uid: string;
   status: string;
   name: string;
@@ -19,7 +20,7 @@ export type PictureType = {
 export type LocationType = {
   name: string;
   address: Object;
-  pictures: Array<PictureType>;
+  images: ImageType[];
 };
 
 export type ProjectType = {
@@ -28,11 +29,12 @@ export type ProjectType = {
   description?: string;
   screenplay?: string;
   shootingScript?: string;
-  locations?: Array<LocationType>;
-  pictures?: Array<PictureType>;
+  locations?: LocationType[];
+  profileImage?: ImageType | null;
+  images?: ImageType[];
 };
 
-export type InitialStateProjectType = {
-  projects: Array<ProjectType>;
-  currentProject: null | ProjectType;
+export type StateProjectType = {
+  projects: ProjectType[];
+  currentProject: ProjectType | null;
 };

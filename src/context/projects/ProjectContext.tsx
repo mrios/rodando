@@ -1,16 +1,15 @@
 import React, { createContext, useReducer } from 'react';
-import { InitialStateProjectType } from './ProjectTypes';
-import projectFakeData from '../../fake-data/projects';
 
+import { StateProjectType } from './ProjectTypes';
 import { projectReducer } from './ProjectReducers';
 
-const initialState = {
-  projects: projectFakeData,
+const initialState: StateProjectType = {
+  projects: [],
   currentProject: null,
 };
 
 const ProjectContext = createContext<{
-  state: InitialStateProjectType;
+  state: StateProjectType;
   dispatch: React.Dispatch<any>;
 }>({
   state: initialState,

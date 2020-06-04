@@ -1,7 +1,7 @@
 import {
   ProjectType,
   LocationType,
-  PictureType,
+  ImageType,
 } from '../context/projects/ProjectTypes';
 import { v4 as uuidv4 } from 'uuid';
 
@@ -11,8 +11,9 @@ export default class Project implements ProjectType {
   description?: string = '';
   screenplay?: string = '';
   shootingScript?: string = '';
-  locations?: Array<LocationType> = [];
-  pictures?: Array<PictureType> = [];
+  locations?: LocationType[] = [];
+  profileImage?: ImageType | null = null;
+  images?: ImageType[] = [];
 
   constructor({
     uid,
@@ -21,7 +22,8 @@ export default class Project implements ProjectType {
     screenplay,
     shootingScript,
     locations,
-    pictures,
+    profileImage,
+    images,
   }: ProjectType) {
     this.uid = uid;
     this.name = name;
@@ -29,6 +31,7 @@ export default class Project implements ProjectType {
     this.screenplay = screenplay;
     this.shootingScript = shootingScript;
     this.locations = locations;
-    this.pictures = pictures;
+    this.profileImage = profileImage;
+    this.images = images;
   }
 }

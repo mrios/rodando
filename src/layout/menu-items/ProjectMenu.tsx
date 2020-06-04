@@ -15,7 +15,7 @@ const ProjectMenu: FC<{ isCollapsed: boolean }> = (props) => {
   const [project] = useProject();
   return (
     <Menu theme="dark" mode="inline" defaultSelectedKeys={['2']}>
-      {!props.isCollapsed && project.pictures && project.pictures[0] ? (
+      {!props.isCollapsed && project.profileImage ? (
         <Menu.Item
           key="1"
           style={{
@@ -30,7 +30,7 @@ const ProjectMenu: FC<{ isCollapsed: boolean }> = (props) => {
           <img
             alt={project.name}
             width="200"
-            src={(project.pictures && project.pictures[0].url) || ''}
+            src={(project.profileImage && project.profileImage.url) || ''}
           />
         </Menu.Item>
       ) : (
