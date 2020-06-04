@@ -3,7 +3,7 @@ import { InitialStateAppType } from './AppTypes';
 import { appReducer } from './AppReducer';
 
 const initialState = {
-  isCollapsed: true,
+  isCollapsed: false,
 };
 
 const AppContext = createContext<{

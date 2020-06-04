@@ -7,7 +7,7 @@ const useProject = () => {
   let { id } = useParams();
   const { state } = useContext(ProjectContext);
   const project = state.projects.find((p) => p.uid === id) || new Project({});
-  return [project];
+  return [project] as const;
 };
 
 export default useProject;
