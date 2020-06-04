@@ -1,5 +1,6 @@
 @import '~antd/dist/antd.less';
 @import './styles/mixins/font-mixin.less';
+@import './styles/gray-pallette.less';
 
 .monserrat-semibold {
   .font('Monserrat', sans-serif; 500; normal);
@@ -91,7 +92,7 @@
 .site-layout {
   .site-page-header {
     background-color: @white;
-    border-bottom: 1px solid #eaeaea;
+    border-bottom: 1px solid @gray-4;
     margin-bottom: @margin-md;
     .ant-page-header-heading-title {
       .monserrat-semibold();
@@ -101,7 +102,7 @@
   .site-header {
     display: flex;
     align-items: center;
-    border-bottom: 1px solid #eaeaea;
+    border-bottom: 1px solid @gray-4;
   }
   .site-layout-subcontent {
     background-color: @white;
