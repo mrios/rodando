@@ -1,13 +1,6 @@
 import React, { FC, useEffect } from 'react';
-import { Menu, Layout, Row, Col, PageHeader, Button } from 'antd';
-import {
-  Link,
-  Switch,
-  Route,
-  useRouteMatch,
-  useHistory,
-} from 'react-router-dom';
-import { FileTextOutlined } from '@ant-design/icons';
+import { Layout, Row, Col } from 'antd';
+import { Switch, Route, useRouteMatch, useHistory } from 'react-router-dom';
 
 import { ProjectProvider } from '../../context/projects/ProjectContext';
 import useProject from '../../hooks/useProject';

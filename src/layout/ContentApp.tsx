@@ -24,7 +24,6 @@ const ContentApp: FC = (props) => {
               path={route.path}
               exact={route.exact}
               children={<route.component />}
-              routes={route.routes}
             />
           ))}
         </Switch>

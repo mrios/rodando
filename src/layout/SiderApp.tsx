@@ -1,27 +1,35 @@
 import React, { FC, useContext } from 'react';
 import { AppContext } from '../context/app/AppContext';
-import { Layout, Menu } from 'antd';
-import { UserOutlined, VideoCameraOutlined } from '@ant-design/icons';
-import { Link } from 'react-router-dom';
+import { Layout } from 'antd';
+import AppMenu from './menu-items/AppMenu';
+import ProjectMenu from './menu-items/ProjectMenu';
+import { Route, Switch } from 'react-router-dom';
 
 const { Sider } = Layout;
 
 const SiderApp: FC = () => {
   const { state } = useContext(AppContext);
+
   return (
-    <Sider trigger={null} collapsible collapsed={state.isCollapsed}>
+    <Sider trigger={null} collapsible collapsed={state.isCollapsed} width={230}>
       <div className="brand">
         <div className="logo" />
         <div className="name">Rodando</div>
       </div>
-      <Menu theme="dark" mode="inline" defaultSelectedKeys={['1']}>
-        <Menu.Item key="1" icon={<VideoCameraOutlined />}>
-          <Link to="/projects">Proyectos</Link>
-        </Menu.Item>
-        <Menu.Item key="2" icon={<UserOutlined />}>
-          <Link to="/contacts">Contactos</Link>
-        </Menu.Item>
-      </Menu>
+      <Switch>
+        <Route path="/" exact={true}>
+          <AppMenu />
+        </Route>
+        <Route path="/projects" exact={true}>
+          <AppMenu />
+        </Route>
+        <Route path="/contacts" exact={true}>
+          <AppMenu />
+        </Route>
+        <Route path="/projects/:id">
+          <ProjectMenu isCollapsed={state.isCollapsed} />
+        </Route>
+      </Switch>
     </Sider>
   );
 };
