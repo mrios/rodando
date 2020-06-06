@@ -1,18 +1,14 @@
-import React, { FC, useContext } from 'react';
+import React, { FC } from 'react';
 import { useHistory } from 'react-router-dom';
-import { ProjectContext } from '../../context/projects/ProjectContext';
+import { useProjects } from '../../state-containers/projects/Store';
 import { Card, PageHeader, Empty } from 'antd';
 import { Button, Row, Col, Space } from 'antd';
-import {
-  EditOutlined,
-  EllipsisOutlined,
-  SettingOutlined,
-  PlusOutlined,
-} from '@ant-design/icons';
+import { EditOutlined, SettingOutlined, PlusOutlined } from '@ant-design/icons';
+import { ProjectType } from '../../state-containers/projects/ProjectTypes';
 const { Meta } = Card;
 
 const ProjectList: FC = (props) => {
-  const { state } = useContext(ProjectContext);
+  const [state] = useProjects();
   let history = useHistory();
 
   const editProject = (projectId: string) => {

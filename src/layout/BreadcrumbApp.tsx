@@ -1,7 +1,8 @@
 import React from 'react';
 import { Breadcrumb } from 'antd';
-import { withRouter, Link } from 'react-router-dom';
+import { withRouter, Link, useParams } from 'react-router-dom';
 import { pathToRegexp } from 'path-to-regexp';
+import { useProject } from '../state-containers/projects/Store';
 
 type ObjectStringType = {
   [key: string]: string | undefined;
@@ -9,10 +10,15 @@ type ObjectStringType = {
 
 const BreadcrumbApp = withRouter((props: any) => {
   const { location } = props;
+  var matched = /projects\/(\d+)/.exec(location.pathname);
+  const projectId = matched && matched[1] ? matched[1].toString() : '';
+
+  const [project] = useProject({ uid: projectId });
 
   let breadcrumbNameMap: ObjectStringType = {
     '/projects': 'Proyectos',
-    '/projects/:id': 'Proyecto <...>',
+    '/projects/:id':
+      project && project.name ? project && project.name : '[Nuevo Projecto]',
     '/projects/:id/basic': 'Información Básica',
     '/projects/:id/planning': 'Plan de rodaje',
     '/projects/:id/contacts': 'Contactos',

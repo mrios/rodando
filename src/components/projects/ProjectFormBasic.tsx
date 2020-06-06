@@ -11,12 +11,15 @@ import {
   Collapse,
 } from 'antd';
 import { CaretRightOutlined, UploadOutlined } from '@ant-design/icons';
-import useProject from '../../hooks/useProject';
+import { useProject } from '../../state-containers/projects/Store';
+import Project from '../../models/Project';
+import { useParams } from 'react-router-dom';
 
 const { Panel } = Collapse;
 
 const ProjectFormBasic: FC = (props) => {
-  const [project] = useProject();
+  const { id } = useParams();
+  const [project, actions] = useProject({ uid: id });
   const [form] = Form.useForm();
   const [fileList, setFileList] = useState([
     {
@@ -29,7 +32,7 @@ const ProjectFormBasic: FC = (props) => {
   ]);
 
   useEffect(() => {
-    form.setFieldsValue(project);
+    form.setFieldsValue(project ? project : new Project({}));
   }, []);
 
   const onFinish = (values: any) => {
@@ -82,7 +85,7 @@ const ProjectFormBasic: FC = (props) => {
               >
                 <Input.TextArea
                   allowClear
-                  rows={4}
+                  rows={6}
                   placeholder="Ingrese una breve descripcion acerca del proyecto"
                 />
               </Form.Item>

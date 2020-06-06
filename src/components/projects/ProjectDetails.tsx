@@ -2,9 +2,6 @@ import React, { FC, useEffect } from 'react';
 import { Layout, Row, Col } from 'antd';
 import { Switch, Route, useRouteMatch, useHistory } from 'react-router-dom';
 
-import { ProjectProvider } from '../../context/projects/ProjectContext';
-import useProject from '../../hooks/useProject';
-
 import ProjectFormBasic from './ProjectFormBasic';
 import ProjectPlanning from './ProjectPlanning';
 import ProjectContacts from './ProjectContacts';

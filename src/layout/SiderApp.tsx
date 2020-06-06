@@ -1,5 +1,5 @@
 import React, { FC, useContext } from 'react';
-import { AppContext } from '../context/app/AppContext';
+import { AppContext } from '../state-containers/app/AppContext';
 import { Layout } from 'antd';
 import AppMenu from './menu-items/AppMenu';
 import ProjectMenu from './menu-items/ProjectMenu';

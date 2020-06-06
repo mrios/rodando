@@ -1,13 +1,8 @@
-export enum ProjectAction {
+export enum Actions {
   FETCH_PROJECTS = 'FETCH_PROJECTS',
   ADD_PROJECT = 'ADD_PROJECT',
   UPDATE_PROJECT = 'UPDATE_PROJECT',
   DELETE_PROJECT = 'DELETE_PROJECT',
-}
-
-export interface ActionProjectType {
-  type: string;
-  payload: Object | ProjectType;
 }
 
 export type ImageType = {
@@ -34,7 +29,7 @@ export type ProjectType = {
   images?: ImageType[];
 };
 
-export type StateProjectType = {
+export type State = {
   projects: ProjectType[];
   currentProject: ProjectType | null;
 };

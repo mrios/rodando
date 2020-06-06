@@ -2,7 +2,7 @@ import {
   ProjectType,
   LocationType,
   ImageType,
-} from '../context/projects/ProjectTypes';
+} from '../state-containers/projects/ProjectTypes';
 import { v4 as uuidv4 } from 'uuid';
 
 export default class Project implements ProjectType {
