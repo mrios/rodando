@@ -9,8 +9,7 @@ import ProjectToolbar from './ProjectToolbar';
 
 const { Content } = Layout;
 
-const ProjectDetails: FC = (props) => {
-  const [project] = useProject();
+const ProjectDetails: FC = () => {
   let { url, path } = useRouteMatch();
   let history = useHistory();
 
@@ -30,19 +29,17 @@ const ProjectDetails: FC = (props) => {
               padding: 24,
             }}
           >
-            <ProjectProvider>
-              <Switch>
-                <Route path={`${path}/basic`}>
-                  <ProjectFormBasic />
-                </Route>
-                <Route path={`${path}/planning`}>
-                  <ProjectPlanning />
-                </Route>
-                <Route path={`${path}/contacts`}>
-                  <ProjectContacts />
-                </Route>
-              </Switch>
-            </ProjectProvider>
+            <Switch>
+              <Route path={`${path}/basic`}>
+                <ProjectFormBasic />
+              </Route>
+              <Route path={`${path}/planning`}>
+                <ProjectPlanning />
+              </Route>
+              <Route path={`${path}/contacts`}>
+                <ProjectContacts />
+              </Route>
+            </Switch>
           </Content>
         </Col>
       </Row>

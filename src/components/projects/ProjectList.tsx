@@ -19,6 +19,15 @@ const ProjectList: FC = (props) => {
     history.push(`/projects/new`);
   };
 
+  const getLocalImage = (project: ProjectType): string => {
+    return (
+      require(`./../../fake-data/uploads/projects/${
+        project.profileImage && project.profileImage.url
+      }`) ||
+      'https://gw.alipayobjects.com/zos/rmsportal/JiqGstEfoWAOHiTxclqi.png'
+    );
+  };
+
   return (
     <div className="project-wrapper">
       <Row>
@@ -49,28 +58,34 @@ const ProjectList: FC = (props) => {
               <Card
                 key={`project-${key}`}
                 hoverable
-                style={{ width: 250, minHeight: 340 }}
+                style={{
+                  width: 250,
+                  paddingRight: 24,
+                }}
                 cover={
                   <img
                     className="trigger-img"
                     alt={project.name}
-                    src={
-                      (project.profileImage && project.profileImage.url) ||
-                      'https://gw.alipayobjects.com/zos/rmsportal/JiqGstEfoWAOHiTxclqi.png'
-                    }
+                    src={getLocalImage(project)}
                     onClick={() => editProject(project.uid)}
                   />
                 }
                 actions={[
-                  <SettingOutlined key="setting" />,
+                  <SettingOutlined
+                    key="setting"
+                    onClick={() => editProject(project.uid)}
+                  />,
                   <EditOutlined
                     key="edit"
                     onClick={() => editProject(project.uid)}
                   />,
-                  <EllipsisOutlined key="ellipsis" />,
                 ]}
               >
-                <Meta title={project.name} description={project.description} />
+                <Meta
+                  style={{ height: 140 }}
+                  title={project.name}
+                  description={project.description.substr(0, 100) + ' ...'}
+                />
               </Card>
             ))
           ) : (

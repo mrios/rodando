@@ -11,15 +11,15 @@ export default [
       uid: 'img1',
       status: 'done',
       name: 'image1',
-      url:
-        'https://conceptodefinicion.de/wp-content/uploads/2018/01/Filmaci%C3%B3n2.jpg',
+      url: 'filmacion.jpg',
     },
     images: [],
   },
   {
     uid: '2',
-    name: 'La Guardia II',
-    description: 'Secuela de La Guardia, filmada en la ciudad de ...',
+    name: 'Doña Clara (Aquarius)',
+    description:
+      'Clara, una ex-crítica musical de Recife de 65 años, vive retirada en un edificio particular, el Aquarius, construido en la década de 1940 sobre la chic Avenida Boa Viagem, que bordea el océano. Un importante promotor ha comprado todos los apartamentos, pero ella se niega a vender el suyo y emprende una guerra fría contra la empresa que la acosa. La estresante situación le perturba y le lleva a pensar en su vida, en su pasado, en sus seres queridos.',
     dateTime: {},
     screenplay: '',
     shootingScript: '',
@@ -28,15 +28,15 @@ export default [
       uid: 'img2',
       status: 'done',
       name: 'image2',
-      url:
-        'https://conceptodefinicion.de/wp-content/uploads/2018/01/Filmaci%C3%B3n2.jpg',
+      url: 'Do_a_Clara-143514853-large.jpg',
     },
     images: [],
   },
   {
     uid: '3',
-    name: 'La Guardia',
-    description: 'La Guardia es un proyecto realizado para Guion 3, FADU. UBA',
+    name: 'The Beastie boys story',
+    description:
+      'Mike Diamond y Adam Horovitz, dos de los miembros de Beastie Boys, ofrecen su visión íntima y personal sobre la historia de su banda y de más de 40 años de amistad. ',
     dateTime: {},
     screenplay: '',
     shootingScript: '',
@@ -45,8 +45,7 @@ export default [
       uid: 'img3',
       status: 'done',
       name: 'image3',
-      url:
-        'https://conceptodefinicion.de/wp-content/uploads/2018/01/Filmaci%C3%B3n2.jpg',
+      url: 'beastie_boys_story-247954972-large.jpg',
     },
     images: [],
   },
