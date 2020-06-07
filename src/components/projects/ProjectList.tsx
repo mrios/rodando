@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import React, { FC, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import { useProjects } from '../../state-containers/projects/Store';
 import { Card, PageHeader, Empty } from 'antd';
@@ -8,7 +8,7 @@ import { ProjectType } from '../../state-containers/projects/ProjectTypes';
 const { Meta } = Card;
 
 const ProjectList: FC = (props) => {
-  const [state] = useProjects();
+  const [state, actions] = useProjects();
   let history = useHistory();
 
   const editProject = (projectId: string) => {

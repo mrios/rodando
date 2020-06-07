@@ -3,26 +3,43 @@ import {
   createSubscriber,
   createHook,
   StoreActionApi,
+  createContainer,
 } from 'react-sweet-state';
 
 import { State, ProjectType } from './ProjectTypes';
-import projects from '../../fake-data/projects';
+import Project from '../../models/Project';
 
 const initialState: State = {
-  projects: projects,
-  currentProject: null,
+  projects: [],
+  isLoading: false,
+};
+
+const setIsLoading = () => ({ setState }: StoreActionApi<State>) => {
+  setState({ isLoading: true });
+};
+
+const setData = (data: any) => ({ setState }: StoreActionApi<State>) => {
+  setState({ isLoading: false, projects: data });
 };
 
 const actions = {
-  addProject: (payload: ProjectType) => ({
+  saveProject: (payload: ProjectType) => ({
     setState,
     getState,
   }: StoreActionApi<State>) => {
-    const newState = getState();
-    setState(newState);
-  },
-  updateProject: () => ({ setState, getState }: StoreActionApi<State>) => {
-    const newState = getState();
+    let found = getState().projects.find((p) => p.uid === payload.uid);
+    let updatedProjects: ProjectType[];
+    if (found) {
+      updatedProjects = getState().projects.map((project) =>
+        project.uid === payload.uid ? { ...project, ...payload } : project
+      );
+    } else {
+      updatedProjects = [...getState().projects, ...[payload]];
+    }
+    const newState = {
+      ...getState(),
+      projects: updatedProjects,
+    };
     setState(newState);
   },
   deleteProject: () => ({ setState, getState }: StoreActionApi<State>) => {
@@ -32,9 +49,16 @@ const actions = {
     const newState = getState();
     setState(newState);
   },
-  fetchProjects: () => ({ setState, getState }: StoreActionApi<State>) => {
-    const newState = getState();
-    setState(newState);
+  fetchData: () => async ({ getState, dispatch }: StoreActionApi<State>) => {
+    if (getState().isLoading === true) return;
+
+    // dispatch(setIsLoading());
+    const projects = await fetch('./api/projects');
+    projects.json().then((data) => {
+      console.log('data', data);
+    });
+    //console.log('projects', projects);
+    // dispatch(setData({ projects: [] }));
   },
 };
 
@@ -45,9 +69,9 @@ const Store = createStore({
 
 type Actions = typeof actions;
 type SelectorProps = { uid: string };
-type SelectorState = ProjectType | undefined;
+type SelectorState = ProjectType;
 const getProjectById = (state: State, props: SelectorProps): SelectorState => {
-  return state.projects.find((p) => p.uid === props.uid);
+  return state.projects.find((p) => p.uid === props.uid) || new Project({});
 };
 
 export const ProjectSubscriber = createSubscriber<

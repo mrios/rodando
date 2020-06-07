@@ -31,5 +31,5 @@ export type ProjectType = {
 
 export type State = {
   projects: ProjectType[];
-  currentProject: ProjectType | null;
+  isLoading: boolean;
 };

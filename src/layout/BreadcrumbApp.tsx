@@ -1,8 +1,9 @@
 import React from 'react';
 import { Breadcrumb } from 'antd';
-import { withRouter, Link, useParams } from 'react-router-dom';
+import { withRouter, Link } from 'react-router-dom';
 import { pathToRegexp } from 'path-to-regexp';
 import { useProject } from '../state-containers/projects/Store';
+import getUUIDFromURL from '../utils/utils';
 
 type ObjectStringType = {
   [key: string]: string | undefined;
