@@ -3,7 +3,7 @@ import { Breadcrumb } from 'antd';
 import { withRouter, Link } from 'react-router-dom';
 import { pathToRegexp } from 'path-to-regexp';
 import { useProject } from '../state-containers/projects/Store';
-import getUUIDFromURL from '../utils/utils';
+import { getUUIDFromURL } from '../utils/utils';
 
 type ObjectStringType = {
   [key: string]: string | undefined;
@@ -11,7 +11,7 @@ type ObjectStringType = {
 
 const BreadcrumbApp = withRouter((props: any) => {
   const { location } = props;
-  const projectId = getUUIDFromURL('projects', location);
+  const projectId = getUUIDFromURL(location.pathname);
   const [project] = useProject({ uid: projectId });
 
   let breadcrumbNameMap: ObjectStringType = {
