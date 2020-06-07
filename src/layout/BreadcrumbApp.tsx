@@ -10,18 +10,13 @@ type ObjectStringType = {
 
 const BreadcrumbApp = withRouter((props: any) => {
   const { location } = props;
-  var matched = /projects\/(\d+)/.exec(location.pathname);
-  const projectId = matched && matched[1] ? matched[1].toString() : '';
-
+  const projectId = getUUIDFromURL('projects', location);
   const [project] = useProject({ uid: projectId });
 
   let breadcrumbNameMap: ObjectStringType = {
     '/projects': 'Proyectos',
     '/projects/:id':
       project && project.name ? project && project.name : '[Nuevo Projecto]',
-    '/projects/:id/basic': 'Información Básica',
-    '/projects/:id/planning': 'Plan de rodaje',
-    '/projects/:id/contacts': 'Contactos',
     '/contacts': 'Contactos',
   };
 

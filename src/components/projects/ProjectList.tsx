@@ -20,13 +20,16 @@ const ProjectList: FC = (props) => {
   };
 
   const getLocalImage = (project: ProjectType): string => {
-    return (
-      require(`./../../fake-data/uploads/projects/${
-        project.profileImage && project.profileImage.url
-      }`) ||
-      'https://gw.alipayobjects.com/zos/rmsportal/JiqGstEfoWAOHiTxclqi.png'
-    );
+    return project.profileImage && project.profileImage.url
+      ? require(`./../../fake-data/uploads/projects/${
+          project.profileImage && project.profileImage.url
+        }`)
+      : 'https://gw.alipayobjects.com/zos/rmsportal/JiqGstEfoWAOHiTxclqi.png';
   };
+
+  useEffect(() => {
+    actions.fetchData();
+  }, []);
 
   return (
     <div className="project-wrapper">

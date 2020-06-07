@@ -6,7 +6,7 @@ import {
 import { v4 as uuidv4 } from 'uuid';
 
 export default class Project implements ProjectType {
-  uid?: string = uuidv4();
+  uid: string = uuidv4();
   name?: string = '';
   description?: string = '';
   screenplay?: string = '';
@@ -16,7 +16,7 @@ export default class Project implements ProjectType {
   images?: ImageType[] = [];
 
   constructor({
-    uid,
+    uid: string,
     name,
     description,
     screenplay,
@@ -25,7 +25,6 @@ export default class Project implements ProjectType {
     profileImage,
     images,
   }: ProjectType) {
-    this.uid = uid;
     this.name = name;
     this.description = description;
     this.screenplay = screenplay;

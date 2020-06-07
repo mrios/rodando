@@ -12,14 +12,13 @@ import { ProjectType } from '../../state-containers/projects/ProjectTypes';
 const ProjectMenu: FC<{ isCollapsed: boolean }> = (props) => {
   let { url } = useRouteMatch();
   const { id } = useParams();
-  const [project, actions] = useProject({ uid: id });
+  const [project] = useProject({ uid: id });
   const getLocalImage = (project: ProjectType): string => {
-    return (
-      require(`./../../fake-data/uploads/projects/${
-        project.profileImage && project.profileImage.url
-      }`) ||
-      'https://gw.alipayobjects.com/zos/rmsportal/JiqGstEfoWAOHiTxclqi.png'
-    );
+    return project.profileImage && project.profileImage.url
+      ? require(`./../../fake-data/uploads/projects/${
+          project.profileImage && project.profileImage.url
+        }`)
+      : 'https://gw.alipayobjects.com/zos/rmsportal/JiqGstEfoWAOHiTxclqi.png';
   };
   return (
     <Menu theme="dark" mode="inline" defaultSelectedKeys={['2']}>
