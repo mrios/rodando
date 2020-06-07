@@ -52,13 +52,11 @@ const actions = {
   fetchData: () => async ({ getState, dispatch }: StoreActionApi<State>) => {
     if (getState().isLoading === true) return;
 
-    // dispatch(setIsLoading());
-    const projects = await fetch('./api/projects');
+    dispatch(setIsLoading());
+    const projects = await fetch('/api/projects');
     projects.json().then((data) => {
-      console.log('data', data);
+      dispatch(setData(data.map((p: any) => new Project(p))));
     });
-    //console.log('projects', projects);
-    // dispatch(setData({ projects: [] }));
   },
 };
 

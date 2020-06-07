@@ -11,9 +11,10 @@ export const getLocalImage = (
   baseURL: string,
   project: ProjectType
 ): string => {
-  return project.profileImage && project.profileImage.url
-    ? require(`${baseURL}/fake-data/uploads/projects/${
-        project.profileImage && project.profileImage.url
-      }`)
-    : 'https://gw.alipayobjects.com/zos/rmsportal/JiqGstEfoWAOHiTxclqi.png';
+  // return project.profileImage && project.profileImage.url
+  //   ? require(`${baseURL}fake-data/uploads/projects/${
+  //       project.profileImage && project.profileImage.url
+  //     }`)
+  //   : 'https://gw.alipayobjects.com/zos/rmsportal/JiqGstEfoWAOHiTxclqi.png';
+  return 'https://gw.alipayobjects.com/zos/rmsportal/JiqGstEfoWAOHiTxclqi.png';
 };
