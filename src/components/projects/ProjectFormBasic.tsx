@@ -104,16 +104,7 @@ const ProjectFormBasic: FC = (props) => {
             <Panel header="Archivos Guion" key="1" className="custom-panel">
               <Row>
                 <Col span={12}>
-                  <Form.Item
-                    name="screenplay"
-                    label="Guion narrativo"
-                    rules={[
-                      {
-                        required: true,
-                        message: 'Por favor, suba el guion narrativo',
-                      },
-                    ]}
-                  >
+                  <Form.Item name="screenplay" label="Guion narrativo">
                     <Upload>
                       <Button type="primary" ghost>
                         <UploadOutlined /> Subir archivo
@@ -122,16 +113,7 @@ const ProjectFormBasic: FC = (props) => {
                   </Form.Item>
                 </Col>
                 <Col span={12}>
-                  <Form.Item
-                    name="shootingScript"
-                    label="Guion tecnico"
-                    rules={[
-                      {
-                        required: true,
-                        message: 'Por favor, suba el guion tecnico',
-                      },
-                    ]}
-                  >
+                  <Form.Item name="shootingScript" label="Guion tecnico">
                     <Upload>
                       <Button type="primary" ghost>
                         <UploadOutlined /> Subir archivo
