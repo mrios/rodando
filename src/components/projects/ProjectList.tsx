@@ -1,10 +1,11 @@
 import React, { FC, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
-import { useProjects } from '../../state-containers/projects/Store';
-import { Card, PageHeader, Empty } from 'antd';
-import { Button, Row, Col, Space } from 'antd';
+import { Card, PageHeader, Empty, Button, Row, Col, Space } from 'antd';
 import { EditOutlined, SettingOutlined, PlusOutlined } from '@ant-design/icons';
+
+import { useProjects } from '../../state-containers/projects/Store';
 import { getLocalImage } from '../../utils/utils';
+
 const { Meta } = Card;
 
 const ProjectList: FC = (props) => {
@@ -21,6 +22,7 @@ const ProjectList: FC = (props) => {
 
   useEffect(() => {
     actions.fetchData();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
