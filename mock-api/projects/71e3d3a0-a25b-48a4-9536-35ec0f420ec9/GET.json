@@ -1,0 +1,16 @@
+{
+  "uid": "71e3d3a0-a25b-48a4-9536-35ec0f420ec9",
+  "name": "La Guardia",
+  "description": "La Guardia es un proyecto realizado para Guion 3, FADU. UBA",
+  "dateTime": {},
+  "screenplay": "",
+  "shootingScript": "",
+  "locations": [],
+  "profileImage": {
+    "uid": "img1",
+    "status": "done",
+    "name": "image1",
+    "url": "filmacion.jpg"
+  },
+  "images": []
+}
