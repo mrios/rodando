@@ -7,19 +7,12 @@ import {
 } from '@ant-design/icons';
 import { Link, useRouteMatch, useParams } from 'react-router-dom';
 import { useProject } from '../../state-containers/projects/Store';
-import { ProjectType } from '../../state-containers/projects/ProjectTypes';
+import { getLocalImage } from '../../utils/utils';
 
 const ProjectMenu: FC<{ isCollapsed: boolean }> = (props) => {
   let { url } = useRouteMatch();
   const { id } = useParams();
   const [project] = useProject({ uid: id });
-  const getLocalImage = (project: ProjectType): string => {
-    return project.profileImage && project.profileImage.url
-      ? require(`./../../fake-data/uploads/projects/${
-          project.profileImage && project.profileImage.url
-        }`)
-      : 'https://gw.alipayobjects.com/zos/rmsportal/JiqGstEfoWAOHiTxclqi.png';
-  };
   return (
     <Menu theme="dark" mode="inline" defaultSelectedKeys={['2']}>
       {!props.isCollapsed && project && project.profileImage ? (
@@ -36,7 +29,11 @@ const ProjectMenu: FC<{ isCollapsed: boolean }> = (props) => {
             marginBottom: 18,
           }}
         >
-          <img alt={project.name} width="200" src={getLocalImage(project)} />
+          <img
+            alt={project.name}
+            width="200"
+            src={getLocalImage(__dirname, project)}
+          />
         </Menu.Item>
       ) : (
         ''

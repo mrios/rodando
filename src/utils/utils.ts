@@ -1,14 +1,19 @@
-const getUUIDFromURL = (prefix: string, location: any): string => {
-  const v4 = new RegExp(
-    /^\/projects\/([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}\/+)/
-  );
-  var matched = v4.exec(location.pathname);
-  const uuid =
-    matched && matched[1]
-      ? matched[1].substr(0, matched[1].length - 1).toString()
-      : '';
+import { ProjectType } from '../state-containers/projects/ProjectTypes';
 
-  return uuid;
+// TODO: improve this function to recibe a prefix and in
+export const getUUIDFromURL = (pathname: string): string => {
+  const pattern = `^/([a-zA-Z0-9_-]+)/([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12})`;
+  var matched = new RegExp(pattern, 'g').exec(pathname);
+  return matched && matched[2] ? matched[2].toString() : '';
 };
 
-export default getUUIDFromURL;
+export const getLocalImage = (
+  baseURL: string,
+  project: ProjectType
+): string => {
+  return project.profileImage && project.profileImage.url
+    ? require(`${baseURL}/fake-data/uploads/projects/${
+        project.profileImage && project.profileImage.url
+      }`)
+    : 'https://gw.alipayobjects.com/zos/rmsportal/JiqGstEfoWAOHiTxclqi.png';
+};

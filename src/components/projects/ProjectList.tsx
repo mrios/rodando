@@ -4,7 +4,7 @@ import { useProjects } from '../../state-containers/projects/Store';
 import { Card, PageHeader, Empty } from 'antd';
 import { Button, Row, Col, Space } from 'antd';
 import { EditOutlined, SettingOutlined, PlusOutlined } from '@ant-design/icons';
-import { ProjectType } from '../../state-containers/projects/ProjectTypes';
+import { getLocalImage } from '../../utils/utils';
 const { Meta } = Card;
 
 const ProjectList: FC = (props) => {
@@ -17,14 +17,6 @@ const ProjectList: FC = (props) => {
 
   const newProject = () => {
     history.push(`/projects/new`);
-  };
-
-  const getLocalImage = (project: ProjectType): string => {
-    return project.profileImage && project.profileImage.url
-      ? require(`./../../fake-data/uploads/projects/${
-          project.profileImage && project.profileImage.url
-        }`)
-      : 'https://gw.alipayobjects.com/zos/rmsportal/JiqGstEfoWAOHiTxclqi.png';
   };
 
   useEffect(() => {
@@ -69,7 +61,7 @@ const ProjectList: FC = (props) => {
                   <img
                     className="trigger-img"
                     alt={project.name}
-                    src={getLocalImage(project)}
+                    src={getLocalImage(__dirname, project)}
                     onClick={() => editProject(project.uid)}
                   />
                 }
