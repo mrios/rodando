@@ -15,11 +15,14 @@ import { useProject } from '../../state-containers/projects/Store';
 import Project from '../../models/Project';
 import { useParams } from 'react-router-dom';
 
+import notifyIcon from './../notify/notify';
+
 const { Panel } = Collapse;
 
 const ProjectFormBasic: FC = (props) => {
   const { id } = useParams();
-  const [project, actions] = useProject({ uid: id });
+  let [project, actions] = useProject({ uid: id });
+
   const [form] = Form.useForm();
   const [fileList, setFileList] = useState([
     {
@@ -32,11 +35,16 @@ const ProjectFormBasic: FC = (props) => {
   ]);
 
   useEffect(() => {
-    form.setFieldsValue(project ? project : new Project({}));
+    form.setFieldsValue(project);
   }, []);
 
   const onFinish = (values: any) => {
-    console.log(values);
+    actions.saveProject({ ...values, ...{ uid: project.uid } });
+    notifyIcon({
+      type: 'success',
+      message: 'Guardar Nuevo Projecto',
+      description: 'El projecto se ha guardado correctamente',
+    });
   };
 
   const onReset = () => {
