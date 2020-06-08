@@ -1,3 +1,5 @@
+import { Moment } from 'moment';
+
 export enum Actions {
   FETCH_PROJECTS = 'FETCH_PROJECTS',
   ADD_PROJECT = 'ADD_PROJECT',
@@ -21,6 +23,7 @@ export type LocationType = {
 export type ProjectType = {
   uid?: string;
   name?: string;
+  rangeDate?: [Moment, Moment] | undefined;
   description?: string;
   screenplay?: string;
   shootingScript?: string;

@@ -11,11 +11,14 @@ import {
   Collapse,
 } from 'antd';
 import { CaretRightOutlined, UploadOutlined } from '@ant-design/icons';
+import locale from 'antd/es/date-picker/locale/es_ES';
 import { useProject } from '../../state-containers/projects/Store';
-import Project from '../../models/Project';
 import { useParams } from 'react-router-dom';
+import moment from 'moment';
 
 import notifyIcon from './../notify/notify';
+
+moment.locale('es');
 
 const { Panel } = Collapse;
 
@@ -33,13 +36,25 @@ const ProjectFormBasic: FC = (props) => {
         'https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png',
     },
   ]);
+  const dateFormatToShow = 'DD/MM/YYYY';
+  const dateFormatToSave = 'YYYY-MM-DD';
 
   useEffect(() => {
     form.setFieldsValue(project);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const onFinish = (values: any) => {
-    actions.saveProject({ ...values, ...{ uid: project.uid } });
+    actions.saveProject({
+      ...values,
+      ...{
+        uid: project.uid,
+        rangeDate: [
+          values.rangeDate[0].format(dateFormatToSave),
+          values.rangeDate[1].format(dateFormatToSave),
+        ],
+      },
+    });
     notifyIcon({
       type: 'success',
       message: 'Guardar Nuevo Projecto',
@@ -50,6 +65,7 @@ const ProjectFormBasic: FC = (props) => {
   const onReset = () => {
     form.resetFields();
   };
+
   return (
     <Form layout="vertical" form={form} hideRequiredMark onFinish={onFinish}>
       <Row>
@@ -68,7 +84,7 @@ const ProjectFormBasic: FC = (props) => {
             </Col>
             <Col span={12}>
               <Form.Item
-                name="dateTime"
+                name="rangeDate"
                 label="Fechas de inicio y fin"
                 rules={[
                   {
@@ -77,7 +93,11 @@ const ProjectFormBasic: FC = (props) => {
                   },
                 ]}
               >
-                <DatePicker.RangePicker style={{ width: '100%' }} />
+                <DatePicker.RangePicker
+                  style={{ width: '100%' }}
+                  locale={locale}
+                  format={dateFormatToShow}
+                />
               </Form.Item>
             </Col>
             <Col span={24}>
