@@ -3,7 +3,6 @@ import {
   createSubscriber,
   createHook,
   StoreActionApi,
-  createContainer,
 } from 'react-sweet-state';
 
 import { State, ProjectType } from './ProjectTypes';

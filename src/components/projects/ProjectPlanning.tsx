@@ -13,7 +13,7 @@ const columns = [
     title: 'Escena',
     dataIndex: 'scene',
     key: 'scene',
-    render: (text: React.ReactNode) => <a>{text}</a>,
+    render: (text: React.ReactNode) => <a href=".">{text}</a>,
   },
   {
     title: 'Plano',
@@ -50,7 +50,7 @@ const columns = [
     key: 'action',
     render: (text: any, record: { scene: React.ReactNode }) => (
       <Space size="middle">
-        <a>Editar</a>
+        <a href=".">Editar</a>
       </Space>
     ),
   },

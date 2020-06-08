@@ -27,7 +27,7 @@ const ProjectFormBasic: FC = (props) => {
   let [project, actions] = useProject({ uid: id });
 
   const [form] = Form.useForm();
-  const [fileList, setFileList] = useState([
+  const [fileList] = useState([
     {
       uid: '-1',
       name: 'image.png',
