@@ -27,15 +27,9 @@ const ProjectFormBasic: FC = (props) => {
   let [project, actions] = useProject({ uid: id });
 
   const [form] = Form.useForm();
-  const [fileList] = useState([
-    {
-      uid: '-1',
-      name: 'image.png',
-      status: 'done',
-      url:
-        'https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png',
-    },
-  ]);
+  const [fileList, setFileList] = useState(
+    project.profileImage ? [project.profileImage] : []
+  );
   const dateFormatToShow = 'DD/MM/YYYY';
   const dateFormatToSave = 'YYYY-MM-DD';
 
@@ -66,12 +60,46 @@ const ProjectFormBasic: FC = (props) => {
     form.resetFields();
   };
 
+  // const onChangeProfileImage = (
+  //   newFileList: React.SetStateAction<
+  //     import('../../state-containers/projects/ProjectTypes').UploadFile<any>[]
+  //   >
+  // ) => {
+  //   setFileList(newFileList);
+  // };
+
+  const onPreviewProfileImage = () => {
+    console.log('show profile image');
+  };
+
   return (
     <Form layout="vertical" form={form} hideRequiredMark onFinish={onFinish}>
       <Row>
         <Col span={13}>
           <Row gutter={16}>
-            <Col span={12}>
+            <Col span={6}>
+              <Form.Item
+                name="profileImage"
+                label="Imagen de perfil"
+                rules={[
+                  {
+                    required: true,
+                    message: 'Por favor, seleccione una imagen',
+                  },
+                ]}
+              >
+                <Upload
+                  action="https://www.mocky.io/v2/5cc8019d300000980a055e76"
+                  listType="picture-card"
+                  fileList={fileList}
+                  // onChange={onChangeProfileImage}
+                  onPreview={onPreviewProfileImage}
+                >
+                  {fileList.length < 1 && '+ Upload'}
+                </Upload>
+              </Form.Item>
+            </Col>
+            <Col span={18}>
               <Form.Item
                 name="name"
                 label="Nombre"
@@ -81,8 +109,6 @@ const ProjectFormBasic: FC = (props) => {
               >
                 <Input allowClear placeholder="Por favor, ingrese un nombre" />
               </Form.Item>
-            </Col>
-            <Col span={12}>
               <Form.Item
                 name="rangeDate"
                 label="Fechas de inicio y fin"
@@ -100,6 +126,8 @@ const ProjectFormBasic: FC = (props) => {
                 />
               </Form.Item>
             </Col>
+          </Row>
+          <Row gutter={16}>
             <Col span={24}>
               <Form.Item
                 name="description"

@@ -4,7 +4,6 @@ import { Card, PageHeader, Empty, Button, Row, Col, Space } from 'antd';
 import { EditOutlined, SettingOutlined, PlusOutlined } from '@ant-design/icons';
 
 import { useProjects } from '../../state-containers/projects/Store';
-import { getLocalImage } from '../../utils/utils';
 
 const { Meta } = Card;
 
@@ -63,7 +62,7 @@ const ProjectList: FC = (props) => {
                   <img
                     className="trigger-img"
                     alt={project.name}
-                    src={getLocalImage(__dirname, project)}
+                    src={project.profileImage.url}
                     onClick={() => editProject(project.uid)}
                   />
                 }

@@ -1,26 +1,26 @@
 import {
   ProjectType,
   LocationType,
-  ImageType,
+  UploadFile,
 } from '../state-containers/projects/ProjectTypes';
 import { v4 as uuidv4 } from 'uuid';
 import moment, { Moment } from 'moment';
 
 export default class Project implements ProjectType {
-  uid: string = uuidv4();
+  uid?: string | null = null;
   name?: string = '';
   rangeDate?: [Moment, Moment] | undefined;
   description?: string = '';
   screenplay?: string = '';
   shootingScript?: string = '';
   locations?: LocationType[] = [];
-  profileImage?: ImageType | null = null;
-  images?: ImageType[] = [];
+  profileImage?: UploadFile | null;
+  images?: UploadFile[] = [];
 
   dateFormat: string = 'YYYY-MM-DD';
 
   constructor({
-    uid: string,
+    uid,
     name,
     rangeDate,
     description,
@@ -30,6 +30,7 @@ export default class Project implements ProjectType {
     profileImage,
     images,
   }: ProjectType) {
+    this.uid = uid ? uid : uuidv4();
     this.name = name;
     this.rangeDate =
       rangeDate && rangeDate[0] && rangeDate[1]
@@ -42,7 +43,12 @@ export default class Project implements ProjectType {
     this.screenplay = screenplay;
     this.shootingScript = shootingScript;
     this.locations = locations;
-    this.profileImage = profileImage;
+    this.profileImage = profileImage
+      ? {
+          ...profileImage,
+          url: `/projects/${this.uid}/profile-image/${profileImage.url}`,
+        }
+      : undefined;
     this.images = images;
   }
 }

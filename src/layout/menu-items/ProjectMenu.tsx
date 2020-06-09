@@ -7,7 +7,6 @@ import {
 } from '@ant-design/icons';
 import { Link, useRouteMatch, useParams } from 'react-router-dom';
 import { useProject } from '../../state-containers/projects/Store';
-import { getLocalImage } from '../../utils/utils';
 
 const ProjectMenu: FC<{ isCollapsed: boolean }> = (props) => {
   let { url } = useRouteMatch();
@@ -29,11 +28,7 @@ const ProjectMenu: FC<{ isCollapsed: boolean }> = (props) => {
             marginBottom: 18,
           }}
         >
-          <img
-            alt={project.name}
-            width="200"
-            src={getLocalImage(__dirname, project)}
-          />
+          <img alt={project.name} width="200" src={project.profileImage.url} />
         </Menu.Item>
       ) : (
         ''
