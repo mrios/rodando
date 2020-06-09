@@ -9,6 +9,7 @@ import {
   Button,
   Divider,
   Collapse,
+  Modal,
 } from 'antd';
 import { CaretRightOutlined, UploadOutlined } from '@ant-design/icons';
 import locale from 'antd/es/date-picker/locale/es_ES';
@@ -17,6 +18,7 @@ import { useParams } from 'react-router-dom';
 import moment from 'moment';
 
 import notifyIcon from './../notify/notify';
+import { UploadFile } from 'antd/lib/upload/interface';
 
 moment.locale('es');
 
@@ -27,9 +29,16 @@ const ProjectFormBasic: FC = (props) => {
   let [project, actions] = useProject({ uid: id });
 
   const [form] = Form.useForm();
-  const [fileList, setFileList] = useState(
+  const [fileListProfileImage, setFileListProfileImage] = useState(
     project.profileImage ? [project.profileImage] : []
   );
+  const [actionUpload] = useState(
+    project.profileImage && project.profileImage.url
+      ? project.profileImage.url
+      : `/projects/${project.uid}/profile-image/`
+  );
+  const [previewIsVisible, setPreviewIsVisible] = useState(false);
+  const [confirmLoading, setConfirmLoading] = useState(false);
   const dateFormatToShow = 'DD/MM/YYYY';
   const dateFormatToSave = 'YYYY-MM-DD';
 
@@ -60,16 +69,30 @@ const ProjectFormBasic: FC = (props) => {
     form.resetFields();
   };
 
-  // const onChangeProfileImage = (
-  //   newFileList: React.SetStateAction<
-  //     import('../../state-containers/projects/ProjectTypes').UploadFile<any>[]
-  //   >
-  // ) => {
-  //   setFileList(newFileList);
-  // };
+  const onChangeProfileImage = (props: { fileList: UploadFile<any>[] }) => {
+    setFileListProfileImage(props.fileList);
+  };
 
-  const onPreviewProfileImage = () => {
-    console.log('show profile image');
+  const onPreviewProfileImage = async (file: UploadFile) => {
+    setPreviewIsVisible(true);
+    setConfirmLoading(true);
+    if (file.url) {
+      let response = await fetch(file.url);
+      let data = await response.blob();
+      let metadata = {
+        type: 'image/jpeg',
+      };
+      let fileBlob = new File([data], 'preview.jpg', metadata);
+      const reader = new FileReader();
+      reader.readAsDataURL(fileBlob);
+      reader.onload = () => {
+        setConfirmLoading(false);
+      };
+    }
+  };
+
+  const onRemoveProfileImage = (file: UploadFile) => {
+    setFileListProfileImage([]);
   };
 
   return (
@@ -89,14 +112,31 @@ const ProjectFormBasic: FC = (props) => {
                 ]}
               >
                 <Upload
-                  action="https://www.mocky.io/v2/5cc8019d300000980a055e76"
+                  action={actionUpload}
                   listType="picture-card"
-                  fileList={fileList}
-                  // onChange={onChangeProfileImage}
+                  fileList={fileListProfileImage}
+                  onChange={onChangeProfileImage}
                   onPreview={onPreviewProfileImage}
+                  onRemove={onRemoveProfileImage}
                 >
-                  {fileList.length < 1 && '+ Upload'}
+                  {fileListProfileImage.length < 1 && '+ Upload'}
                 </Upload>
+                <Modal
+                  title="Vista previa"
+                  style={{ top: 20 }}
+                  visible={previewIsVisible}
+                  onOk={() => setPreviewIsVisible(false)}
+                  okText="Cerrar"
+                  onCancel={() => setPreviewIsVisible(false)}
+                  confirmLoading={confirmLoading}
+                  bodyStyle={{ textAlign: 'center' }}
+                >
+                  <img
+                    width="200"
+                    alt="preview"
+                    src={fileListProfileImage[0] && fileListProfileImage[0].url}
+                  />
+                </Modal>
               </Form.Item>
             </Col>
             <Col span={18}>
@@ -194,7 +234,7 @@ const ProjectFormBasic: FC = (props) => {
                     action="https://www.mocky.io/v2/5cc8019d300000980a055e76"
                     listType="picture-card"
                   >
-                    {fileList.length < 5 && '+ Upload'}
+                    {fileListProfileImage.length < 5 && '+ Upload'}
                   </Upload>
                 </Form.Item>
               </Col>
