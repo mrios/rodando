@@ -109,7 +109,10 @@
   }
   .site-layout-background {
     padding: 0;
-    background: #fff;
+    background: @gray-2;
+    &.site-header {
+      background: @white;
+    }
     .trigger-menu {
       font-size: 18px;
       line-height: 64px;
@@ -155,7 +158,7 @@ form {
   background: @gray-3;
   padding: @padding-xs;
   margin: -@margin-lg;
-  margin-bottom: @margin-lg;
+  margin-bottom: 0;
   .toolbar-header {
     .monserrat-semibold();
     text-transform: uppercase;
