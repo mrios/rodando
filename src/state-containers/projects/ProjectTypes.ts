@@ -1,38 +1,11 @@
 import { Moment } from 'moment';
+import { UploadFile } from 'antd/lib/upload/interface';
 
 export enum Actions {
   FETCH_PROJECTS = 'FETCH_PROJECTS',
   ADD_PROJECT = 'ADD_PROJECT',
   UPDATE_PROJECT = 'UPDATE_PROJECT',
   DELETE_PROJECT = 'DELETE_PROJECT',
-}
-
-// taken from https://github.com/ant-design/ant-design/blob/master/components/upload/interface.tsx
-export type UploadFileStatus =
-  | 'error'
-  | 'success'
-  | 'done'
-  | 'uploading'
-  | 'removed';
-
-export interface UploadFile<T = any> {
-  uid: string;
-  size: number;
-  name: string;
-  fileName?: string;
-  lastModified?: number;
-  lastModifiedDate?: Date;
-  url?: string;
-  status?: UploadFileStatus;
-  percent?: number;
-  thumbUrl?: string;
-  originFileObj?: File | Blob;
-  response?: T;
-  error?: any;
-  linkProps?: any;
-  type: string;
-  xhr?: T;
-  preview?: string;
 }
 
 export type LocationType = {
