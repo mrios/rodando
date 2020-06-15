@@ -1,8 +1,8 @@
 import {
   ProjectType,
   LocationType,
-  UploadFile,
 } from '../state-containers/projects/ProjectTypes';
+import { UploadFile } from 'antd/lib/upload/interface';
 import { v4 as uuidv4 } from 'uuid';
 import moment, { Moment } from 'moment';
 
@@ -11,8 +11,8 @@ export default class Project implements ProjectType {
   name?: string = '';
   rangeDate?: [Moment, Moment] | undefined;
   description?: string = '';
-  screenplay?: string = '';
-  shootingScript?: string = '';
+  screenplay?: UploadFile | null;
+  shootingScript?: UploadFile | null;
   locations?: LocationType[] = [];
   profileImage?: UploadFile | null;
   images?: UploadFile[] = [];
@@ -40,8 +40,18 @@ export default class Project implements ProjectType {
           ]
         : undefined;
     this.description = description;
-    this.screenplay = screenplay;
-    this.shootingScript = shootingScript;
+    this.screenplay = screenplay
+      ? {
+          ...screenplay,
+          url: `/projects/${this.uid}/files/screenplay/${screenplay.url}`,
+        }
+      : undefined;
+    this.shootingScript = shootingScript
+      ? {
+          ...shootingScript,
+          url: `/projects/${this.uid}/files/shooting-script/${shootingScript.url}`,
+        }
+      : undefined;
     this.locations = locations;
     this.profileImage = profileImage
       ? {

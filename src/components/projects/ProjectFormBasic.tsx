@@ -37,6 +37,10 @@ const ProjectFormBasic: FC = (props) => {
       ? project.profileImage.url
       : `/projects/${project.uid}/profile-image/`
   );
+  const [fileListScreenplay] = useState(
+    project.screenplay ? [project.screenplay] : []
+  );
+
   const [previewIsVisible, setPreviewIsVisible] = useState(false);
   const [confirmLoading, setConfirmLoading] = useState(false);
   const dateFormatToShow = 'DD/MM/YYYY';
@@ -201,7 +205,7 @@ const ProjectFormBasic: FC = (props) => {
               <Row>
                 <Col span={12}>
                   <Form.Item name="screenplay" label="Guion narrativo">
-                    <Upload>
+                    <Upload fileList={fileListScreenplay}>
                       <Button type="primary" ghost>
                         <UploadOutlined /> Subir archivo
                       </Button>

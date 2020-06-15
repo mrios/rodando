@@ -19,8 +19,8 @@ export type ProjectType = {
   name?: string;
   rangeDate?: [Moment, Moment] | undefined;
   description?: string;
-  screenplay?: string;
-  shootingScript?: string;
+  screenplay?: UploadFile | null;
+  shootingScript?: UploadFile | null;
   locations?: LocationType[];
   profileImage?: UploadFile | null;
   images?: UploadFile[];
