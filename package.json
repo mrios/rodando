@@ -17,7 +17,7 @@
     "antd": "^4.2.5",
     "connect-api-mocker": "^1.9.0",
     "craco-less": "^1.16.0",
-    "moment": "^2.26.0",
+    "moment": "^2.29.2",
     "path-to-regexp": "^6.1.0",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
